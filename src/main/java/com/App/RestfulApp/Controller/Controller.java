@@ -20,9 +20,19 @@ public class Controller {
     public List<Book> getAllBooks(){
         return bookService.getAllBooks();
     }
-    @RequestMapping(value = "/book/contain", method = RequestMethod.GET)
-    public List<Book> findBookTitleContain(@RequestParam(required = true, name = "key") String keyWord){
-        return bookService.findBookTitleContain(keyWord);
 
+    @RequestMapping(value = "/book/titleContain", method = RequestMethod.GET)
+    public List<Book> findBookTitleContain(@RequestParam(required = true, name = "key") String keyWord){
+        return bookService.findBookWhereTitleContain(keyWord );
+    }
+
+    @RequestMapping(value = "/book/releasedYearEqual", method = RequestMethod.GET)
+    public List<Book> findBookTitleContain2(@RequestParam(required = true, name = "key") String keyWord){
+        return bookService.findBookWhereReleasedYearEqual(Integer.parseInt(keyWord));
+    }
+
+    @RequestMapping(value = "/book/authorIs", method = RequestMethod.GET)
+    public List<Book> findBookWhereAuthorIs(@RequestParam(required = true, name = "key") String keyWord){
+        return bookService.findBookWhereAuthorIs(keyWord);
     }
 }

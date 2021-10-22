@@ -28,11 +28,16 @@ public class BookService {
         return list;
     }
 
-    public List<Book> findBookTitleContain(String keyWord){
-        return bookRepository.findBookTitleContain(keyWord);
+    public List<Book> findBookWhereTitleContain(String keyWord){
+        return bookRepository.findBookWhereTitleContain("%"+keyWord+"%");
     }
 
+    public List<Book> findBookWhereReleasedYearEqual(int keyWord){
+        return bookRepository.findBookWhereReleasedYearEqual(keyWord);
+    }
 
-
+    public List<Book> findBookWhereAuthorIs(String keyWord){
+        return bookRepository.findBookWhereAuthorIs(keyWord);
+    }
 
 }

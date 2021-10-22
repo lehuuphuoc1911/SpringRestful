@@ -10,6 +10,12 @@ import java.util.List;
 
 public interface BookRepository extends CrudRepository<Book, Integer> {
 
-    @Query(value = "SELECT * FROM books WHERE title like \"%\\n-- #keyWord\\n%\";", nativeQuery = true)
-    List<Book> findBookTitleContain(String keyWord);
+    @Query(value = "SELECT * FROM books WHERE title like ?1 ;", nativeQuery = true)
+    List<Book> findBookWhereTitleContain(String keyWord);
+
+    @Query(value = "SELECT * FROM books WHERE released_year = ?1 ;", nativeQuery = true)
+    List<Book> findBookWhereReleasedYearEqual(int keyWord);
+
+    @Query(value = "SELECT * FROM books WHERE CONCAT_WS('_', author_fname, author_lname) = ?1 ;", nativeQuery = true)
+    List<Book> findBookWhereAuthorIs(String keyWord);
 }
